@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="margin: 50px 50px;">
+		<b>사진선택</b>
+		<select id="selimg">
+			<option value="1">학생1</option>
+			<option value="2">학생2</option>
+			<option value="3">학생3</option>
+			<option value="4">학생4</option>
+			<option value="5">학생5</option>
+		</select>
+		
+		<br><br>
+		자바점수: <input type="text" id="java">
+		오라클점수: <input type="text" id="oracle">
+		스프링점수: <input type="text" id="spring">
+		<button type="button" id="btn1" class="btn btn-info">데이타 전송</button>
+		<br><br>
+		<div id="result"></div>
+	</div>
+	
+	<script type="text/javascript">
+	
+		$("#btn1").click(function(){
+			
+			var photono=$("#selimg").val();
+			
+			var photostu=$("#selimg option:selected").text();
+			
+			var java=$("#java").val();
+			var oracle=$("#oracle").val();
+			var spring=$("#spring").val();
+			
+	
+			var s="photono="+photono+"&photostu="+photostu+"&java="+java+"&oracle="+oracle+"&spring="+spring;
+			$.ajax({
+				
+				type:"get",
+				url:"ex3_receive.jsp",
+				dataType:"json",
+				data:s,
+				success:function(res){
+					
+					//방법1
+					var out="<img src='"+res.photo+"'><br>";
+					out+="<h3>학생명: "+res.photostu+"</h3>";
+					out+="<h4>총합계: "+res.tot+"</h4>";
+					out+="<h4>평균: "+res.avg+"</h4>";
+					
+					$("#result").html(out);
+				}
+			
+			
+			});
+		});
+	
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+package memo.model;
+
+public class MemoDao {
+
+}

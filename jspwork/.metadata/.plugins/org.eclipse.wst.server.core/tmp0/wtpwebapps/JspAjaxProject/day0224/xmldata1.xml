@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<board>
+   <data id="angel" name="이미현">
+      <subject>Hello</subject>
+      <photo>../image/01.png</photo>
+   </data>
+   <data id="aaa" name="홍길동">
+      <subject>Hi</subject>
+      <photo>../image/02.png</photo>
+   </data>
+   <data id="bbb" name="김희수">
+      <subject>Nice</subject>
+      <photo>../image/03.png</photo>
+   </data>
+   <data id="ccc" name="김수희">
+      <subject>Good</subject>
+      <photo>../image/04.png</photo>
+   </data>
+   <data id="ddd" name="강호동">
+      <subject>Bye</subject>
+      <photo>../image/05.png</photo>
+   </data>
+</board>
+

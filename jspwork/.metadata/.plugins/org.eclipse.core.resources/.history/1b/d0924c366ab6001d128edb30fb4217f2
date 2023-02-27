@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link
+   href="https://fonts.googleapis.com/css2?family=Anton&family=Edu+VIC+WA+NT+Beginner:wght@600&family=Gamja+Flower&family=Single+Day&family=Jua&family=Nanum+Pen+Script&display=swap"
+   rel="stylesheet">
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<style type="text/css">
+div.memo {
+   position: absolute;
+   border: 0px solid gray;
+   font-size: 1.5em;
+   font-family: 'Gamja Flower';
+}
+
+div.button {
+   line-height: 140px;
+   top: 30px;
+   width: 400px;
+   height: 100px;
+   line-height: 100px;
+   text-align: center;
+}
+
+div.addform {
+   left: 100px;
+   top: 150px;
+   width: 500px;
+   height: 400px;
+   padding: 20px 20px;
+}
+
+img.select {
+   border: 2px solid red;
+}
+
+img.avata{
+   cursor: pointer;
+}
+
+div.updateform {
+   left: 100px;
+   top: 150px;
+   width: 500px;
+   height: 400px;
+   padding: 20px 20px;
+}
+
+div.list {
+   left: 700px;
+   top: 100px;
+   width: 600px;
+   height: 700px;
+   padding: 20px 20px;
+}
+
+span.writeday {
+   float: right;
+   color: #bbb;
+}
+
+span.writer {
+   font-weight: bold;
+}
+
+</style>
+
+<script type="text/javascript">
+   $(function () {
+      // 처음 로딩시 리스트 호출
+      list();
+      
+      $("div.addform").hide();
+      $("div.updateform").hide();
+      $("#btnadd").click(function(){
+         $("div.addform").slideToggle('fast');
+      });
+      
+      $("img.avata").eq(2).addClass("select");
+      // 아바타 2번 src 얻어서 input 태그에 넣어주기
+      $("#avata").val($("img.avata").eq(2).attr("src"));
+      // 아바타 선택시 값변경
+      $("img.avata").click(function(){
+         $(this).siblings().removeClass("select");
+         $(this).addClass("select");
+         $("#avata").val($(this).attr("src"));
+      });
+      
+      $("td.dbsave").click(function() {
+         var data = $("#addform").serialize();
+         //alert(data);
+         $.ajax({
+        	 
+            type: "post",
+            dataType:"html",
+            url:"insertproc.jsp",
+            data:data,
+            success:function(res){
+            	
+            	//성공했을시 목록 다시출력
+            	list();
+            }
+         });
+      });
+      
+      //삭제이벤트 on....이후에 생긴거므로 on이벤트 써야함
+      $(document).on("click","span.del",function(){
+    	  
+    	  var num=$(this).attr("num");
+    	  //alert(num);
+    	  
+    	  $.ajax({
+    		
+    		 type:"get",
+    		 dataType:"html",
+    		 url:"deleteproc.jsp",
+    		 data:{"num":num},
+    		 success:function(res){
+    			 
+    			 list();
+    		 }
+    	  
+    	  });
+      });
+   });
+   
+   function list() {
+      $.ajax ({
+         type: "get",
+         url: "memolistproc.jsp",
+         dataType: "json",
+         success: function(res) {
+            //alert(res.length);
+            
+            var s = "";
+            if(res.length==0) {
+               s += "<h3 class='alert alert-info'>저장된 메모가 없습니다</h3>";
+            } else {
+               $.each(res, function(i, elt) {
+                  s += "<table class='table'>";
+                  s += "<tr height='100'><td>";
+                  s += "<span class='writer'>작성자:" + elt.writer + "</span>";
+                  
+                  s += "<span class='mod' num="+elt.num+" >수정 | </span>";
+                  s += "<span class='del' num="+elt.num+" >삭제</span>";
+                  
+                  
+                  s += "<span class='writeday'>" + elt.writeday + "</span>";
+                  s += "<br>";
+                  s += "<pre>" + elt.content;
+                  s += "<img src ='" + elt.avata + "' align = 'right' width='80'>";
+                  s += "</pre>";
+                  s += "</td></tr>";
+                  s += "</table><br>";
+               });
+            }
+            $("div.list").html(s);
+         }
+      });
+   }
+</script>
+</head>
+<body>
+   <div class="memo button">
+      <button type="button" class="btn btn-info" id="btnadd"
+         style="width: 120px;">메모추가</button>
+   </div>
+
+   <div class="memo addform">
+      <form id="addform" method="post">
+         <table class="table table-bordered">
+            <caption>
+               <b>메모추가</b>
+            </caption>
+            <tr>
+               <th width="100" bgcolor="lightyellow">작성자</th>
+               <td><input type="text" class="form-control" name="writer"
+                  id="writer" style="width: 120px"></td>
+            </tr>
+
+            <tr>
+               <th width="100" bgcolor="lightyellow">메모</th>
+               <td><textarea style="width: 300px; height: 100px;"
+                     name="content" id="content" class="form-control"></textarea></td>
+            </tr>
+
+            <tr>
+               <th width="100" bgcolor="lightyellow">아바타</th>
+               <td><input type="hidden" name="avata" id="avata"> <script
+                     type="text/javascript">
+                  var tag = "";
+                  for (var i = 1; i <= 10; i++) {
+                     tag += "<img src='../avata/"+ i + ".png' width='50' class='avata'>";
+
+                     if (i == 5)
+                        tag += "<br>";
+                  }
+                  document.write(tag);
+               </script></td>
+            </tr>
+
+            <tr>
+               <td colspan="2" align="center" style="cursor: pointer;"
+                  class="dbsave">DB에 저장하기</td>
+            </tr>
+         </table>
+      </form>
+   </div>
+   
+   
+   <div class="memo updateform">
+      <form id="updateform" method="post">
+      <!-- hidden으로 num넘기기 -->
+      <input type="hidden" in="unum" name="unum">
+         <table class="table table-bordered">
+            <caption>
+               <b>메모추가</b>
+            </caption>
+            <tr>
+               <th width="100" bgcolor="lightgray">작성자</th>
+               <td><input type="text" class="form-control" name="uwriter"
+                  id="uwriter" style="width: 120px"></td>
+            </tr>
+
+            <tr>
+               <th width="100" bgcolor="lightgray">메모</th>
+               <td><textarea style="width: 300px; height: 100px;"
+                     name="ucontent" id="ucontent" class="form-control"></textarea></td>
+            </tr>
+
+            <tr>
+               <th width="100" bgcolor="lightgray">아바타</th>
+               <td><input type="text" name="uavata" id="uavata"> <script
+                     type="text/javascript">
+                  var tag = "";
+                  for (var i = 1; i <= 10; i++) {
+                     tag += "<img src='../avata/"+ i + ".png' width='50' class='avata'>";
+
+                     if (i == 5)
+                        tag += "<br>";
+                  }
+                  document.write(tag);
+               </script></td>
+            </tr>
+
+            <tr>
+               <td colspan="2" align="center" style="cursor: pointer;"
+                  class="dbupdate">DB에 수정하기</td>
+            </tr>
+         </table>
+      </form>
+   </div>
+
+   <div class="memo updateform">update</div>
+   <div class="memo list">list</div>
+
+</body>
+</html>
