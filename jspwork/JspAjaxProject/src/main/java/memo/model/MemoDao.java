@@ -17,7 +17,7 @@ public class MemoDao {
       Connection conn = db.getConnection();
       PreparedStatement pstmt = null;
 
-      String sql = "insert into mem values(null, ?, ?, ?, now())";
+      String sql = "insert into memo values(null,?,?,?,now())";
 
       try {
          pstmt = conn.prepareStatement(sql);
@@ -67,4 +67,94 @@ public class MemoDao {
       
       return list;
    }
+   
+   
+   //삭제
+   public void deleteMemo(String num) {
+	   
+	   Connection conn=db.getConnection();
+	   PreparedStatement pstmt=null;
+	   
+	   String sql="delete from memo where num=?";
+	   
+	   try {
+		   
+		   pstmt=conn.prepareStatement(sql);
+		   pstmt.setString(1, num);
+		   
+		   pstmt.execute();
+		   
+	   }catch(SQLException e) {
+		      
+	   }finally {
+		db.dbClose(pstmt, conn);
+	}
+   }
+   
+   
+   //num에 해당하는 하나의 데이타 리턴
+   public MemoDto getData(String num) {
+	   
+	   MemoDto dto=new MemoDto();
+	   
+	   Connection conn=db.getConnection();
+	   PreparedStatement pstmt=null;
+	   ResultSet rs=null;
+	   
+	   String sql="select * from memo where num=?";
+	   
+	   
+	   try {
+		   
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1, num);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			
+			dto.setNum(rs.getString("num"));
+            dto.setWriter(rs.getString("writer"));
+            dto.setContent(rs.getString("content"));
+            dto.setAvata(rs.getString("avata"));
+            dto.setWriteday(rs.getTimestamp("writeday"));
+		}
+	} catch (SQLException e) {
+
+		e.printStackTrace();
+	}finally {
+		db.dbClose(rs, pstmt, conn);
+	}
+	   
+	   
+	   return dto;
+   }
+   
+   
+   public void updatememo(MemoDto dto) {
+	   
+	   Connection conn=db.getConnection();
+	   PreparedStatement pstmt=null;
+	   
+	   String sql="update memo set writer=?,content=?,avata=? where num=?";
+	   
+	   try {
+		   
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1, dto.getWriter());
+		pstmt.setString(2, dto.getContent());
+		pstmt.setString(3, dto.getAvata());
+		pstmt.setString(4, dto.getNum());
+		
+		pstmt.execute();
+		
+	} catch (SQLException e) {
+
+		e.printStackTrace();
+	}finally {
+		db.dbClose(pstmt, conn);
+	}
+	   
+   }
+   
+   
 }
