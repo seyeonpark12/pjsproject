@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<h3>폼태그에 데이타 입력후 jsp로 보내기</h3>
+	이름: <input type="text" id="name"><br>
+	핸드폰: <input type="text" id="hp"><br><br>
+	<button type="button" id="btn1" class="btn btn-info">ajax로 서버에 보내기 #방법1</button>
+	<button type="button" id="btn2" class="btn btn-info">ajax로 서버에 보내기#방법2</button>
+	<hr>
+	<div id="show"></div>
+	
+	<script type="text/javascript">
+		$("#btn1").click(function(){
+			
+			//입력한 값들을 읽는다
+			var name=$("#name").val();
+			var hp=$("#hp").val();
+			
+			var data="name="+name+"&hp="+hp; //방법1
+			//alert(data);
+			
+			//ajax함수를 통해서 백엔드로 데이터를 보낸다
+			$.ajax({
+				
+				type:"get",
+				url:"ex1_read1.jsp",
+				data:data,
+				success:function(res){
+					
+					$("#show").html("<h4 class='alert alert-info'>"+data+"</h4>");
+				},
+				statusCode:{
+					
+					404:function(){
+						
+						alert("json파일이 없어요");
+					},
+					500:function(){
+						
+						alert("서버오류!!! 코드를 다시한번 확인하세요");
+					}
+				}
+			});
+		});
+		
+		$("#btn2").click(function(){
+			
+			//입력한 값들을 읽는다
+			var name=$("#name").val();
+			var hp=$("#hp").val();
+			
+			$.ajax({
+				
+				type:"get",
+				url:"ex1_read2.jsp",
+				dataType:"xml",
+				data:{"name":name,"hp":hp},
+				success:function(res){
+					
+					var s="<h2>"+$(res).text()+"님의 데이타를 db에 추가했어요"+"</h2>";
+					$("show").html(s);
+				}
+			});
+		});
+	</script>
+</body>
+</html>
