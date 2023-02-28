@@ -16,3 +16,21 @@
 2월 27, 2023 17:28:48.969 [17556:12680:0227/172848.968:ERROR:device_event_log_impl.cc(218)] [17:28:48.968] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0c45&pid_672e#00000040#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.
 2월 27, 2023 17:29:01.631 [15924:18976:0227/172901.631:ERROR:usb_descriptors.cc(161)] Device descriptor parsing error.
 2월 27, 2023 17:29:01.631 [15924:18976:0227/172901.631:ERROR:device_event_log_impl.cc(218)] [17:29:01.631] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0c45&pid_672e#00000040#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.
+
+2월 28, 2023 10:24:07.987 NEW SESSION
+2월 28, 2023 10:24:07.987 [1200:5956:0228/102407.986:ERROR:usb_descriptors.cc(161)] Device descriptor parsing error.
+2월 28, 2023 10:24:07.995 [1200:5956:0228/102407.986:ERROR:device_event_log_impl.cc(218)] [10:24:07.986] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0c45&pid_672e#00000040#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.
+2월 28, 2023 10:31:15.409 [15876:14072:0228/103115.409:ERROR:usb_descriptors.cc(161)] Device descriptor parsing error.
+2월 28, 2023 10:31:15.409 [15876:14072:0228/103115.409:ERROR:device_event_log_impl.cc(218)] [10:31:15.409] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0c45&pid_672e#00000040#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.
+2월 28, 2023 11:17:22.208 [3036:2964:0228/111722.208:ERROR:usb_descriptors.cc(161)] Device descriptor parsing error.
+2월 28, 2023 11:17:22.208 [3036:2964:0228/111722.208:ERROR:device_event_log_impl.cc(218)] [11:17:22.208] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0c45&pid_672e#00000040#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.
+2월 28, 2023 12:10:46.201 [15740:15868:0228/121046.201:ERROR:usb_descriptors.cc(161)] Device descriptor parsing error.
+2월 28, 2023 12:10:46.201 [15740:15868:0228/121046.201:ERROR:device_event_log_impl.cc(218)] [12:10:46.200] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0c45&pid_672e#00000040#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.
+2월 28, 2023 12:11:22.116 [17976:14800:0228/121122.116:ERROR:usb_descriptors.cc(161)] Device descriptor parsing error.
+2월 28, 2023 12:11:22.116 [17976:14800:0228/121122.116:ERROR:device_event_log_impl.cc(218)] [12:11:22.116] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0c45&pid_672e#00000040#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.
+2월 28, 2023 12:28:37.745 [17164:1496:0228/122837.745:ERROR:usb_descriptors.cc(161)] Device descriptor parsing error.
+2월 28, 2023 12:28:37.745 [17164:1496:0228/122837.745:ERROR:device_event_log_impl.cc(218)] [12:28:37.745] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0c45&pid_672e#00000040#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.
+2월 28, 2023 15:51:32.142 [9520:7688:0228/155132.142:ERROR:usb_descriptors.cc(161)] Device descriptor parsing error.
+2월 28, 2023 15:51:32.142 [9520:7688:0228/155132.142:ERROR:device_event_log_impl.cc(218)] [15:51:32.141] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0c45&pid_672e#00000040#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.
+2월 28, 2023 16:42:11.241 [5108:3380:0228/164211.241:ERROR:usb_descriptors.cc(161)] Device descriptor parsing error.
+2월 28, 2023 16:42:11.241 [5108:3380:0228/164211.241:ERROR:device_event_log_impl.cc(218)] [16:42:11.241] USB: usb_device_win.cc:95 Failed to read descriptors from \\?\usb#vid_0c45&pid_672e#00000040#{a5dcbf10-6530-11d2-901f-00c04fb951ed}.

@@ -1,0 +1,5 @@
+package ajaxboard.model;
+
+public class AjaxBoarDao {
+
+}
